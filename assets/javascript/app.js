@@ -1,7 +1,7 @@
 //document ready command to load everything correctly
 $(document).ready(function () {
     //variable array to hold the topics on which to query the giphy api and return results. Also holds input for new button created by users
-    var topics = ["critical role", "dungeons and dragons", "star wars", "animals being jerks", "star trek", "cats", "alice cooper", "the muppets", "nat 20", "lord of the rings"]
+    var topics = ["critical role", "dungeons and dragons", "star wars", "animals being jerks", "star trek", "cats", "alice cooper", "the muppets", "nat 20", "lord of the rings", "nintendo", "halloween", "gym fails", "spider-man"]
     //function to create buttons from the arary
     function createButton() {
         $("#button-goes-here").empty();
