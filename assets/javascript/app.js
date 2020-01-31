@@ -32,6 +32,7 @@ $("button").on("click", function () {
             var ratingText = $("<p>").text("Rating: " + rating);
             var newImage = $("<img>");
 
+            ratingText.addClass("m-2 p-2 font-weight-bold")
             newImage.attr("src", results[i].images.fixed_height.url);
             buttonDiv.append(ratingText);
             buttonDiv.append(newImage);
