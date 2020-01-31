@@ -6,6 +6,7 @@ function createButton() {
     for (i = 0; i < topics.length; i++) {
         var newButton = $("<button>").text(topics[i]);
         newButton.attr("data-name", topics[i]);
+        newButton.addClass("btn btn-dark btn-lg m-1 font-weight-bold");
         $("#button-goes-here").append(newButton);
 
     }
