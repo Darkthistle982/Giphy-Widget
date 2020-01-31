@@ -18,7 +18,7 @@ $(document).ready(function () {
         var topic = $(this).attr("data-name");
         //variable for the query URL to the GIPHY api with the index of the topic chosen
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FIUPsuC3wpsjInI9z00DHj7Zw7Ye60Q2&q=" + topic + "&limit=10&offset=0&rating=PG-13&lang=en";
-        console.log(queryURL);
+        // console.log(queryURL);
         //ajax call to the API
         $.ajax({
             url: queryURL,
