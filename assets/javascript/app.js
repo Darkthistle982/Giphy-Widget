@@ -8,13 +8,13 @@ $(document).ready(function () {
         for (i = 0; i < topics.length; i++) {
             var newButton = $("<button>").text(topics[i]);
             newButton.attr("data-name", topics[i]);
-            newButton.addClass("btn btn-dark btn-lg m-1 font-weight-bold");
+            newButton.addClass("gif-button btn btn-dark btn-lg m-1 font-weight-bold");
             $("#button-goes-here").append(newButton);
         }
     }
     createButton();
     //on click function linked to button presses
-    $("button").on("click", function () {
+    $(".gif-button").on("click", function () {
         var topic = $(this).attr("data-name");
         //variable for the query URL to the GIPHY api with the index of the topic chosen
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FIUPsuC3wpsjInI9z00DHj7Zw7Ye60Q2&q=" + topic + "&limit=10&offset=0&rating=PG-13&lang=en";
@@ -24,7 +24,7 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            //function to get the data from the API and inject it into the DOM
+            //function to get the data from the API and inject it into the DOM. drops 10 gifs of the chosen search into the container.
             var results = response.data;
             // console.log(response.data);
             for (i = 0; i < results.length; i++) {
@@ -39,11 +39,17 @@ $(document).ready(function () {
                 buttonDiv.append(ratingText);
                 buttonDiv.append(newImage);
                 $("#gifs-appear-here").prepend(buttonDiv);
-
-
-
-
             }
         });
     });
+
+    $("#create-new-button").on("click", function() {
+        event.preventDefault();
+        console.log("clicked")
+
+    });
+
+
+
+
 });
