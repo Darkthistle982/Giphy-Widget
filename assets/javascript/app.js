@@ -14,41 +14,52 @@ $(document).ready(function () {
     }
     createButton();
     //on click function linked to button presses
-    $(".gif-button").on("click", function () {
-        var topic = $(this).attr("data-name");
-        //variable for the query URL to the GIPHY api with the index of the topic chosen
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FIUPsuC3wpsjInI9z00DHj7Zw7Ye60Q2&q=" + topic + "&limit=10&offset=0&rating=PG-13&lang=en";
-        // console.log(queryURL);
-        //ajax call to the API
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            //function to get the data from the API and inject it into the DOM. drops 10 gifs of the chosen search into the container.
-            var results = response.data;
-            // console.log(response.data);
-            for (i = 0; i < results.length; i++) {
-                var buttonDiv = $("<div>");
-                var rating = results[i].rating;
-                var ratingText = $("<p>").text("Rating: " + rating);
-                var newImage = $("<img>");
-
-                ratingText.addClass("card header m-2 p-2 font-weight-bold")
-                newImage.attr("src", results[i].images.fixed_height.url);
-                newImage.addClass("card-body");
-                buttonDiv.append(ratingText);
-                buttonDiv.append(newImage);
-                $("#gifs-appear-here").prepend(buttonDiv);
-            }
+    function showGifs(){
+        $(".gif-button").on("click", function () {
+            var topic = $(this).attr("data-name");
+            //variable for the query URL to the GIPHY api with the index of the topic chosen
+            var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FIUPsuC3wpsjInI9z00DHj7Zw7Ye60Q2&q=" + topic + "&limit=10&offset=0&rating=PG-13&lang=en";
+            // console.log(queryURL);
+            //ajax call to the API
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                //function to get the data from the API and inject it into the DOM. drops 10 gifs of the chosen search into the container.
+                var results = response.data;
+                // console.log(response.data);
+                for (i = 0; i < results.length; i++) {
+                    var buttonDiv = $("<div>");
+                    var rating = results[i].rating;
+                    var ratingText = $("<p>").text("Rating: " + rating);
+                    var newImage = $("<img>");
+    
+                    ratingText.addClass("card header m-2 p-2 font-weight-bold")
+                    newImage.attr("src", results[i].images.fixed_height.url);
+                    newImage.addClass("card-body");
+                    buttonDiv.append(ratingText);
+                    buttonDiv.append(newImage);
+                    $("#gifs-appear-here").prepend(buttonDiv);
+                }
+            });
         });
-    });
 
-    $("#create-new-button").on("click", function() {
-        event.preventDefault();
-        console.log("clicked")
+    }
 
-    });
-
+    //on click function to process input text field to add a new gif grabber button
+    function createNewButton() {
+        $("#create-new-button").on("click", function() {
+        var newTopic = $("#new-button").val().trim();
+        if (newTopic == ""){
+            return false;
+        }
+        topics.push(newTopic);
+        createButton();
+        $("#new-button").val("");
+        });
+    }
+createNewButton();
+$(document).on("click", ".gif-button", showGifs);
 
 
 
