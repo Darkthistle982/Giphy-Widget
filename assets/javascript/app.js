@@ -35,7 +35,10 @@ $(document).ready(function () {
                 var newImage = $("<img>");
     
                 ratingText.addClass("card header m-2 p-2 font-weight-bold")
-                newImage.attr("src", results[i].images.fixed_height.url);
+                newImage.attr("src", results[i].images.fixed_height_still.url);
+                newImage.attr("data-animate", results[i].images.fixed_height.url);
+                newImage.attr("data-still", results[i].images.fixed_height_still.url);
+                newImage.attr("data-state", "still");
                 newImage.addClass("card-body");
                 buttonDiv.append(ratingText);
                 buttonDiv.append(newImage);
@@ -49,7 +52,6 @@ $(document).ready(function () {
         $("#create-new-button").on("click", function () {
             var newTopic = $("#new-button").val().trim();
             if (newTopic == "") {
-                alert("Sorry. There are not any gifs for this button.");
                 return false;
             }
             topics.push(newTopic);
@@ -58,5 +60,16 @@ $(document).ready(function () {
         });
 
         $(document).on("click", ".gif-button", showGifs);
+
+        $(document).on("click", ".card-body", function(){
+            var state = $(this).attr("data-state");
+            if (state == "still") {
+                $(this).attr("src", $(this).attr("data-animate"));
+                $(this).attr("data-state", "animate");
+            } else {
+                $(this).attr("src", $(this).attr("data-still"));
+                $(this).attr("data-state", "still");
+            }
+        });
 
 });
