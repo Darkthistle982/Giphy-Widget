@@ -58,9 +58,10 @@ $(document).ready(function () {
             createButton();
             $("#new-button").val("");
         });
-
+    //on click to call the showGifs function to all buttons created
         $(document).on("click", ".gif-button", showGifs);
 
+    //on click function to determine the state of each gif and add the ability to start and stop animation for each one
         $(document).on("click", ".card-body", function(){
             var state = $(this).attr("data-state");
             if (state == "still") {
@@ -71,5 +72,12 @@ $(document).ready(function () {
                 $(this).attr("data-state", "still");
             }
         });
+    
+    //on click function to delete the last added button from the page
+        $("#remove-button").on("click", function(){
+            topics.pop();
+            createButton();
+            console.log(topics);
+        })
 
 });
