@@ -18,7 +18,7 @@ $(document).ready(function () {
         event.preventDefault();
         var topic = $(this).attr("data-name");
         //variable for the query URL to the GIPHY api with the index of the topic chosen
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FIUPsuC3wpsjInI9z00DHj7Zw7Ye60Q2&q=" + topic + "&limit=10&offset=0&rating=PG-13&lang=en";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FIUPsuC3wpsjInI9z00DHj7Zw7Ye60Q2&q=" + topic + "&limit=10&offset=0&rating=R&lang=en";
         //ajax call to the API
         $.ajax({
             url: queryURL,
@@ -28,17 +28,21 @@ $(document).ready(function () {
             var results = response.data;
             for (i = 0; i < results.length; i++) {
                 var buttonDiv = $("<div>");
+                var title = results[i].title;
                 var rating = results[i].rating;
+                var titleText = $("<p>").text("Title: " + title);
                 var ratingText = $("<p>").text("Rating: " + rating);
                 var newImage = $("<img>");
     
                 console.log(response);
-                ratingText.addClass("card header m-2 p-2 font-weight-bold")
+                titleText.addClass("card header m-2 p-2 font-weight-bold");
+                ratingText.addClass("card header m-2 p-2 font-weight-bold");
                 newImage.attr("src", results[i].images.fixed_height_still.url);
                 newImage.attr("data-animate", results[i].images.fixed_height.url);
                 newImage.attr("data-still", results[i].images.fixed_height_still.url);
                 newImage.attr("data-state", "still");
                 newImage.addClass("card-body");
+                buttonDiv.append(titleText);
                 buttonDiv.append(ratingText);
                 buttonDiv.append(newImage);
                 $("#gifs-appear-here").prepend(buttonDiv);
