@@ -1,5 +1,5 @@
 body {
-    background-image: url("/assets/images/gaming-pattern.png");
+    background-image: url("../images/gaming-pattern.png");
     background-repeat: inherit;
     background-size: auto;
 }
