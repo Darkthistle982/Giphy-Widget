@@ -32,6 +32,7 @@ $(document).ready(function () {
                 var ratingText = $("<p>").text("Rating: " + rating);
                 var newImage = $("<img>");
     
+                console.log(response);
                 ratingText.addClass("card header m-2 p-2 font-weight-bold")
                 newImage.attr("src", results[i].images.fixed_height_still.url);
                 newImage.attr("data-animate", results[i].images.fixed_height.url);
