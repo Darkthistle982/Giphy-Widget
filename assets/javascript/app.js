@@ -49,6 +49,7 @@ $(document).ready(function () {
         $("#create-new-button").on("click", function () {
             var newTopic = $("#new-button").val().trim();
             if (newTopic == "") {
+                alert("Sorry. There are not any gifs for this button.");
                 return false;
             }
             topics.push(newTopic);
