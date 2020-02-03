@@ -19,7 +19,6 @@ $(document).ready(function () {
         var topic = $(this).attr("data-name");
         //variable for the query URL to the GIPHY api with the index of the topic chosen
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FIUPsuC3wpsjInI9z00DHj7Zw7Ye60Q2&q=" + topic + "&limit=10&offset=0&rating=PG-13&lang=en";
-        // console.log(queryURL);
         //ajax call to the API
         $.ajax({
             url: queryURL,
@@ -27,7 +26,6 @@ $(document).ready(function () {
         }).then(function (response) {
             //function to get the data from the API and inject it into the DOM. drops 10 gifs of the chosen search into the container.
             var results = response.data;
-            // console.log(response.data);
             for (i = 0; i < results.length; i++) {
                 var buttonDiv = $("<div>");
                 var rating = results[i].rating;
@@ -77,7 +75,6 @@ $(document).ready(function () {
         $("#remove-button").on("click", function(){
             topics.pop();
             createButton();
-            console.log(topics);
         })
 
 });
