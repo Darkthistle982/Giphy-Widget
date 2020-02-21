@@ -5,6 +5,7 @@ A silly widget/app to gather gifs on various subjects and allowing the user to a
 * Application rules/Operation
 * Tech used
 * Details of application
+* Link to live Project
 
 ## Application rules/Operation
 
@@ -22,3 +23,5 @@ The Remove button will delete the last button on the page. The user can remove a
 * Javascript
 * JQuery
 * GIPHY API
+
+### Link to Live Project: https://darkthistle982.github.io/Giphy-Widget/
